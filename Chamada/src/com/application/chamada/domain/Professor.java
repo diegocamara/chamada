@@ -28,7 +28,7 @@ public class Professor {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj instanceof Aluno) {
+		if (obj instanceof Professor) {
 			final Professor professor = (Professor) obj;
 			return new EqualsBuilder().append(this.nome, professor.getNome())
 					.isEquals();
