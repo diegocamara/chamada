@@ -1,51 +1,36 @@
 package com.application.chamada.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "ALUNO")
 public class Aluno {
 
-	@DatabaseField(generatedId = true)
-	private int codigo;
+	@DatabaseField(id = true, canBeNull = false, width = 11)
+	private String matricula;
 
 	@DatabaseField(canBeNull = false, width = 300)
 	private String nome;
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + codigo;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
+		return new HashCodeBuilder().append(matricula).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aluno other = (Aluno) obj;
-		if (codigo != other.codigo)
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
-	}
 
-	public int getCodigo() {
-		return codigo;
-	}
+		if (obj instanceof Aluno) {
+			final Aluno aluno = (Aluno) obj;
+			return new EqualsBuilder().append(this.matricula,
+					aluno.getMatricula()).isEquals();
+		} else {
+			return false;
+		}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -54,6 +39,14 @@ public class Aluno {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 }

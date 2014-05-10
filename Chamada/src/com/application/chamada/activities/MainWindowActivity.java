@@ -20,8 +20,8 @@ public class MainWindowActivity extends Activity{
 		alunoManager = new AlunoManager(getApplicationContext());
 		
 		Aluno aluno = new Aluno();
-		aluno.setCodigo(1);
-		aluno.setNome("Aluno 1");
+		aluno.setMatricula("15947815948");
+		aluno.setNome("Aluno 2");
 		
 		alunoManager.salvarOuAtualizar(aluno);
 		

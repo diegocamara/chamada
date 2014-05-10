@@ -25,7 +25,7 @@ public class AlunoManager extends AbstractManager implements IAlunoManager {
 
 	@Override
 	public Object getDAO() {
-		return alunoDAO;
+		return this.alunoDAO;
 	}
 
 }
