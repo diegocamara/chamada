@@ -9,6 +9,9 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "PROFESSOR")
 public class Professor {
 
+	@DatabaseField(generatedId = true)
+	private int codigo;
+
 	@DatabaseField(canBeNull = false, width = 300)
 	private String nome;
 
@@ -20,9 +23,17 @@ public class Professor {
 		this.nome = nome;
 	}
 
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(nome).toHashCode();
+		return new HashCodeBuilder().append(this.nome).append(this.codigo).toHashCode();
 	}
 
 	@Override
@@ -31,7 +42,7 @@ public class Professor {
 		if (obj instanceof Professor) {
 			final Professor professor = (Professor) obj;
 			return new EqualsBuilder().append(this.nome, professor.getNome())
-					.isEquals();
+					.append(this.codigo, professor.getCodigo()).isEquals();
 		} else {
 			return false;
 		}
